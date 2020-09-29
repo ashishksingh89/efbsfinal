@@ -12,26 +12,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 @RequestMapping("/api")
 public class UserController {
-	  private static final Logger LOG = Logger.getLogger(UserController.class.getName());
+	private static final Logger LOG = Logger.getLogger(UserController.class.getName());
 
 //	@Autowired
 //	UserService userService;
-	
 
-	
 	@GetMapping("/loginuser")
 	public String getUserDetails() {
 		System.err.println("throught userloginservice");
 		return "User login successfully";
 	}
+
 	@GetMapping("/userregistration")
 	public String saveUser() {
-	
 
 		return "User has been created successfully ";
 	}

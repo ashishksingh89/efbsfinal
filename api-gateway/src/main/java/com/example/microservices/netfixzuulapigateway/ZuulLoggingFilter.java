@@ -1,6 +1,5 @@
 package com.example.microservices.netfixzuulapigateway;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -13,29 +12,29 @@ import com.netflix.zuul.exception.ZuulException;
 
 @Component
 public class ZuulLoggingFilter extends ZuulFilter {
-	
+
 	private static final Logger lOGGER = LoggerFactory.getLogger(ZuulLoggingFilter.class);
-	
+
 	@Override
 	public boolean shouldFilter() {
 		return true;
 	}
-	
- @Override
+
+	@Override
 	public Object run() throws ZuulException {
-	 
-	 HttpServletRequest httpServletRequest =RequestContext.getCurrentContext().getRequest();
-	     System.err.println("Hello");
-	     lOGGER.info("request -> {} request uri -> {}", httpServletRequest, httpServletRequest.getRequestURI());
+
+		HttpServletRequest httpServletRequest = RequestContext.getCurrentContext().getRequest();
+		System.err.println("Zull API GateWay is calling");
+		lOGGER.info("request -> {} request uri -> {}", httpServletRequest, httpServletRequest.getRequestURI());
 		return null;
 	}
- 
- @Override
+
+	@Override
 	public int filterOrder() {
 		return 1;
 	}
- 
- @Override
+
+	@Override
 	public String filterType() {
 		return "pre";
 	}
