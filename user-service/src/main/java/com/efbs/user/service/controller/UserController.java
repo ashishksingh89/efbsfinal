@@ -27,12 +27,12 @@ public class UserController {
 	@GetMapping("/loginuser")
 	public String getUserDetails() {
 		System.err.println("throught userloginservice");
-		return "Hello Welcome to the aashu ";
+		return "User login successfully";
 	}
-	@GetMapping("/loginusertottal")
-	public int getTotalUser() {
+	@GetMapping("/userregistration")
+	public String saveUser() {
 	
 
-		return 3*2;
+		return "User has been created successfully ";
 	}
 }
