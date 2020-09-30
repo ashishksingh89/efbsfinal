@@ -1,10 +1,10 @@
-package com.example.microservices.currencyexchangeservice;
+package com.efbs.server.registery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserLoginServiceApplicationTests {
+class ServerRegisteryApplicationTests {
 
 	@Test
 	void contextLoads() {

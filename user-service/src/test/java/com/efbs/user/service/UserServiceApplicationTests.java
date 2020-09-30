@@ -1,10 +1,10 @@
-package com.example.microservices.netfixeurekanaminserver;
+package com.efbs.user.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NetfixEurekaNaminServerApplicationTests {
+class UserServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

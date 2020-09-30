@@ -3,7 +3,7 @@ package com.efbs.resource.service.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient(name = "userlogin-service")
+@FeignClient(name = "user-service")
 public interface UserServiceFeignClient {
 
 	@GetMapping("/api/loginuser")

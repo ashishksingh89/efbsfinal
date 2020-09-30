@@ -1,4 +1,4 @@
-package com.example.microservices.netfixzuulapigateway;
+package com.efbs.apigateway;
 
 import javax.servlet.http.HttpServletRequest;
 

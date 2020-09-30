@@ -1,4 +1,4 @@
-package com.example.microservices.netfixzuulapigateway;
+package com.efbs.apigateway;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -6,13 +6,16 @@ import java.util.logging.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 import brave.sampler.Sampler;
 
-@EnableZuulProxy
-@EnableDiscoveryClient
+@EnableZuulProxy //act as Zuul proxy
+@EnableEurekaServer//for making this application as eureka server
+@EnableFeignClients
 @SpringBootApplication
 public class ApiGatewayApplication {
 

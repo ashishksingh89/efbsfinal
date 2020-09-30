@@ -9,11 +9,11 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example.microservices</groupId>
-	<artifactId>netfix-zuul-api-gateway</artifactId>
+	<groupId>com.efbs.apigateway</groupId>
+	<artifactId>api-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>netfix-zuul-api-gateway</name>
-	<description>currency-conversion-service for Spring Boot</description>
+	<name>api-gateway</name>
+	<description>api-gateway for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -25,27 +25,36 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+		<!--FEIGN-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
 		</dependency>
-		 <dependency>
+	 	 <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-sleuth</artifactId>
     </dependency>
 
-    <!-- <dependency>
+    <!--  <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-zipkin</artifactId>
-		</dependency> -->
+		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.amqp</groupId>
 			<artifactId>spring-rabbit</artifactId>
-		</dependency>
+		</dependency>  
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -74,11 +83,8 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			 
-   
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 		<plugins>
 			<plugin>

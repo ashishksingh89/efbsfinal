@@ -8,10 +8,10 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example.microservices</groupId>
-	<artifactId>netfix-eureka-namin-server</artifactId>
+	<groupId>com.efbs.server.registery</groupId>
+	<artifactId>server-registery</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>netfix-eureka-namin-server</name>
+	<name>server-registery</name>
 	<description>server-registery for Spring Boot</description>
 
 	<properties>
