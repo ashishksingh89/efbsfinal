@@ -1,4 +1,4 @@
-package com.efbs.user.service;
+package com.efbs.service.users;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.efbs.user.service;
+package com.efbs.service.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,10 +16,10 @@ public class UserServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UserServiceApplication.class, args);
 	}
-	
-	 @Bean
-	  public Sampler defaultSampler(){
-	    return Sampler.ALWAYS_SAMPLE;
-	  }
-	
+
+	@Bean
+	public Sampler defaultSampler(){
+		return Sampler.ALWAYS_SAMPLE;
+	}
+
 }
