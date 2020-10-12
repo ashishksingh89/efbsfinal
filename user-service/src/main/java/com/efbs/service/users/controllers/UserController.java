@@ -95,7 +95,7 @@ public class UserController extends BaseController{
 				userDetails.setPassword(encoder.encode(userDetails.getPassword()));
 				userDetails.setCreatedby(getUserPrinciple().getUserprofileinfoid());
 				userDetails.setStatus(true);
-				System.err.println(getUserPrinciple().getAuthorities().iterator());
+//				System.err.println(getUserPrinciple().getAuthorities().iterator());
 				Set<String> strRoles = userDetails.getRole();
 				List<Role> roles = new ArrayList<>();
 

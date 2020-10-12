@@ -11,11 +11,15 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
+import com.efbs.apigateway.filters.ErrorFilter;
+import com.efbs.apigateway.filters.PostFilter;
+import com.efbs.apigateway.filters.PreFilter;
+import com.efbs.apigateway.filters.RouteFilter;
+
 import brave.sampler.Sampler;
 
 @EnableZuulProxy //act as Zuul proxy
 @EnableEurekaServer//for making this application as eureka server
-@EnableFeignClients
 @SpringBootApplication
 public class ApiGatewayApplication {
 
@@ -31,6 +35,24 @@ public class ApiGatewayApplication {
 	@Bean
 	public Sampler defaultSampler() {
 		return Sampler.ALWAYS_SAMPLE;
+	}
+	
+	
+	@Bean
+	public PreFilter preFilter() {
+		return new PreFilter();
+	}
+	@Bean
+	public PostFilter postFilter() {
+		return new PostFilter();
+	}
+	@Bean
+	public ErrorFilter errorFilter() {
+		return new ErrorFilter();
+	}
+	@Bean
+	public RouteFilter routeFilter() {
+		return new RouteFilter();
 	}
 
 }

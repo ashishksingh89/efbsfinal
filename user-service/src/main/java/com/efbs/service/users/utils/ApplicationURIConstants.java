@@ -24,11 +24,11 @@ public final class ApplicationURIConstants {
 	
 	public static final String ID_PATH_VARIABLE = "/{id}";
 
-	public static final String REGISTER_COMPANY_BY_SYSTEM_ADMIN = "/registercompanybysystemadmin";
+	public static final String REGISTER_COMPANY_BY_SYSTEM_ADMIN = "/user/registercompanybysystemadmin";
 	
-	public static final String ADD_USER_BY_SYSTEM_ADMIN = "/user/adduserbysystemadmin";
+	public static final String ADD_USER_BY_SYSTEM_ADMIN = "adduserbysystemadmin";
 	
-	public static final String LIST_OF_COMPANY = "/getlistofcompanybysystemadmin";
+	public static final String LIST_OF_COMPANY = "/user/getlistofcompanybysystemadmin";
 
 
 	
