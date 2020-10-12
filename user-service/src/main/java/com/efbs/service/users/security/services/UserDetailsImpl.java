@@ -9,16 +9,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.efbs.service.users.models.User;
+import com.efbs.service.users.dto.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	private Long getUserprofileinfoid;
 
 	private String username;
-
+	private Long companyid;
 	private String email;
 
 	@JsonIgnore
@@ -26,23 +26,25 @@ public class UserDetailsImpl implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsImpl(Long id, String username, String email, String password,
+	public UserDetailsImpl(Long getUserprofileinfoid, String username,Long companyid,String email, String password,
 			Collection<? extends GrantedAuthority> authorities) {
-		this.id = id;
+		this.getUserprofileinfoid = getUserprofileinfoid;
 		this.username = username;
+		this.companyid=companyid;
 		this.email = email;
 		this.password = password;
 		this.authorities = authorities;
 	}
 
-	public static UserDetailsImpl build(User user) {
+	public static UserDetailsImpl build(UserDTO user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getRolename().name()))
 				.collect(Collectors.toList());
 
 		return new UserDetailsImpl(
-				user.getId(), 
+				user.getUserprofileinfoid(), 
 				user.getUsername(), 
+				user.getCompanyid(),
 				user.getEmail(),
 				user.getPassword(), 
 				authorities);
@@ -53,8 +55,8 @@ public class UserDetailsImpl implements UserDetails {
 		return authorities;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getUserprofileinfoid() {
+		return getUserprofileinfoid;
 	}
 
 	public String getEmail() {
@@ -69,6 +71,10 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public String getUsername() {
 		return username;
+	}
+
+	public Long getCompanyid() {
+		return companyid;
 	}
 
 	@Override
@@ -98,6 +104,6 @@ public class UserDetailsImpl implements UserDetails {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		UserDetailsImpl user = (UserDetailsImpl) o;
-		return Objects.equals(id, user.id);
+		return Objects.equals(getUserprofileinfoid, user.getUserprofileinfoid);
 	}
 }

@@ -3,106 +3,220 @@ package com.efbs.service.users.models;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Date;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.data.annotation.LastModifiedDate;
+
+import com.efbs.service.users.utils.ApplicationConstants;
+import com.efbs.service.users.utils.ApplicationTableConstants;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
-@Table(	name = "users", 
-		uniqueConstraints = { 
-//			@UniqueConstraint(columnNames = "username"),
-			@UniqueConstraint(columnNames = "email") 
-		})
+@Table(	name = ApplicationTableConstants.USER_PROFILE_INFO)
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	  @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = ApplicationTableConstants.USER_PROFILE_INFO_ID)
+	    private Long userprofileinfoid;
 
-	@NotBlank
-	@Size(max = 20)
-	private String username;
+	    @Column(name = ApplicationTableConstants.FIRST_NAME)
+	    private String firstname;
 
-	@NotBlank
-	@Size(max = 50)
-	@Email
-	private String email;
+	    
+	    @Column(name = ApplicationTableConstants.MIDDLE_NAME)
+	    private String middlename;
 
-	@NotBlank
-	@Size(max = 120)
-	private String password;
+	    @Column(name = ApplicationTableConstants.LAST_NAME)
+	    private String lastname;
+	    
+	    @Column(name = ApplicationTableConstants.GENDER)
+	    private String gender;
+	    
+	    @Column(name = ApplicationTableConstants.POSTION)
+	    private String position;
+	    
+	    @Column(name = ApplicationTableConstants.DIVISION)
+	    private String division;
+	    
+	    
+	    @Column(name = ApplicationTableConstants.CONTACT)
+	    private String contact;
+	    
+	    @Column(name = ApplicationTableConstants.COMPANY_ID)
+	    private Long companyid;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(	name = "user_roles", 
-				joinColumns = @JoinColumn(name = "user_id"), 
-				inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<Role> roles ;
-	
+	    @Column(name = ApplicationTableConstants.CREATED_BY)
+		private long createdby;
 
-	public User() {
-	}
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ApplicationConstants.MM_DD_YYYY_HH_MM_SS_AM_PM)
+		@Column(insertable = false, updatable = false, name = ApplicationTableConstants.CREATED_DATE_TIME)
+		@Temporal(TemporalType.TIMESTAMP)
+		@LastModifiedDate		
+		private Date createdatetime;
 
-	public User(String username, String email, String password) {
-		this.username = username;
-		this.email = email;
-		this.password = password;
-	}
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ApplicationConstants.MM_DD_YYYY_HH_MM_SS)
+		@Column(insertable = false, updatable = true, name = ApplicationTableConstants.AUDITED_DATE_TIME)
+		@Temporal(TemporalType.TIMESTAMP)
+		@LastModifiedDate
+		private Date auditeddatetime;
+		
+		@Column(name = ApplicationTableConstants.AUDITED_BY)
+		private long auditedby;
 
-	public Long getId() {
-		return id;
-	}
+	    @Column(name = ApplicationTableConstants.PASSWORD)
+	    private String password;
+	    
+	    @Column(name = ApplicationTableConstants.EMAIL)
+	    private String email;
+	  
+	    @Transient
+	    private Set<String> role;
+	    
+	    
+		@Column(name = ApplicationTableConstants.STATUS)
+		private Boolean status;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+		public Long getUserprofileinfoid() {
+			return userprofileinfoid;
+		}
 
-	public String getUsername() {
-		return username;
-	}
+		public void setUserprofileinfoid(Long userprofileinfoid) {
+			this.userprofileinfoid = userprofileinfoid;
+		}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+		public String getFirstname() {
+			return firstname;
+		}
 
-	public String getEmail() {
-		return email;
-	}
+		public void setFirstname(String firstname) {
+			this.firstname = firstname;
+		}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+		public String getMiddlename() {
+			return middlename;
+		}
 
-	public String getPassword() {
-		return password;
-	}
+		public void setMiddlename(String middlename) {
+			this.middlename = middlename;
+		}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+		public String getLastname() {
+			return lastname;
+		}
 
-	public List<Role> getRoles() {
-		return roles;
-	}
+		public void setLastname(String lastname) {
+			this.lastname = lastname;
+		}
 
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
+		public String getGender() {
+			return gender;
+		}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", roles="
-				+ roles + "]";
-	}
-	
-	
-	
-//
-//	public Set<Role> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(Set<Role> roles) {
-//		this.roles = roles;
-//	}
+		public void setGender(String gender) {
+			this.gender = gender;
+		}
+
+		public String getPosition() {
+			return position;
+		}
+
+		public void setPosition(String position) {
+			this.position = position;
+		}
+
+		public String getContact() {
+			return contact;
+		}
+
+		public void setContact(String contact) {
+			this.contact = contact;
+		}
+
+		public Long getCompanyid() {
+			return companyid;
+		}
+
+		public void setCompanyid(Long companyid) {
+			this.companyid = companyid;
+		}
+
+		public long getCreatedby() {
+			return createdby;
+		}
+
+		public void setCreatedby(long createdby) {
+			this.createdby = createdby;
+		}
+
+		public Date getCreatedatetime() {
+			return createdatetime;
+		}
+
+		public void setCreatedatetime(Date createdatetime) {
+			this.createdatetime = createdatetime;
+		}
+
+		public Date getAuditeddatetime() {
+			return auditeddatetime;
+		}
+
+		public void setAuditeddatetime(Date auditeddatetime) {
+			this.auditeddatetime = auditeddatetime;
+		}
+
+		public long getAuditedby() {
+			return auditedby;
+		}
+
+		public void setAuditedby(long auditedby) {
+			this.auditedby = auditedby;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public Set<String> getRole() {
+			return role;
+		}
+
+		public void setRole(Set<String> role) {
+			this.role = role;
+		}
+
+		public String getDivision() {
+			return division;
+		}
+
+		public void setDivision(String division) {
+			this.division = division;
+		}
+
+		public Boolean getStatus() {
+			return status;
+		}
+
+		public void setStatus(Boolean status) {
+			this.status = status;
+		}
+	    
+	    
+	    
 }

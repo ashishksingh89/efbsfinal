@@ -1,6 +1,5 @@
 package com.efbs.service.users.payload.request;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.*;
@@ -15,7 +14,7 @@ public class SignupRequest {
     @Email
     private String email;
     
-    private List<String> role;
+    private Set<String> role;
     
     @NotBlank
     @Size(min = 6, max = 40)
@@ -44,20 +43,12 @@ public class SignupRequest {
     public void setPassword(String password) {
         this.password = password;
     }
-
-	public List<String> getRole() {
-		return role;
-	}
-
-	public void setRole(List<String> role) {
-		this.role = role;
-	}
     
-//    public Set<String> getRole() {
-//      return this.role;
-//    }
-//    
-//    public void setRole(Set<String> role) {
-//      this.role = role;
-//    }
+    public Set<String> getRole() {
+      return this.role;
+    }
+    
+    public void setRole(Set<String> role) {
+      this.role = role;
+    }
 }

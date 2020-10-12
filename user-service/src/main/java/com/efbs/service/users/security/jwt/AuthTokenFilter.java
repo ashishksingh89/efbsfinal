@@ -50,6 +50,12 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 		filterChain.doFilter(request, response);
 	}
 
+	/**
+	 * The <code>parseJwt</code> is used to get the JWT Token passed in the header for every request.
+	 *
+	 * @param request
+	 * @return
+	 */
 	private String parseJwt(HttpServletRequest request) {
 		String headerAuth = request.getHeader("Authorization");
 

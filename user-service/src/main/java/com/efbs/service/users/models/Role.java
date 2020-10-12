@@ -2,15 +2,18 @@ package com.efbs.service.users.models;
 
 import javax.persistence.*;
 
+import com.efbs.service.users.utils.ApplicationTableConstants;
+
 @Entity
-@Table(name = "roles")
+@Table(name = ApplicationTableConstants.ROLE_MASTER)
 public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = ApplicationTableConstants.ROLE_ID)
 	private Integer roleid;
 
 	@Enumerated(EnumType.STRING)
-	@Column(length = 20)
+    @Column(name = ApplicationTableConstants.ROLE_NAME)
 	private ERole rolename;
 
 	public Integer getRoleid() {
@@ -30,7 +33,6 @@ public class Role {
 	}
 
 	public Role(Integer roleid, ERole rolename) {
-		super();
 		this.roleid = roleid;
 		this.rolename = rolename;
 	}
