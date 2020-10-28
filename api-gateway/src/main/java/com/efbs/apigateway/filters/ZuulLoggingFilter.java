@@ -1,4 +1,4 @@
-package com.efbs.apigateway;
+package com.efbs.apigateway.filters;
 
 import javax.servlet.http.HttpServletRequest;
 
