@@ -35,7 +35,7 @@ public class BaseController {
 	/**
 	 * @return UserPrinciple
 	 */
-	protected UserDetailsImpl getUserPrinciple() {
+	public UserDetailsImpl getUserPrinciple() {
 
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return (UserDetailsImpl) authentication.getPrincipal();

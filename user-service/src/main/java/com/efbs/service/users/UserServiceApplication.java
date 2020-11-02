@@ -1,35 +1,60 @@
 package com.efbs.service.users;
 
-import java.util.Date;
+import java.security.Principal;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import brave.sampler.Sampler;
 
 @SpringBootApplication
-//@EnableFeignClients
 @EnableDiscoveryClient
 @RestController
-public class UserServiceApplication {
+public class UserServiceApplication{
+	
 
 	
-	@RequestMapping(value = "/api/auth/echoStudentName/{name}")
-	public String echoStudentName(@PathVariable(name = "name") String name) {
-		return "Hello  " + name + " Responsed on : " + new Date();
+	@RequestMapping(value = "/admin")
+	public String echoStudentName(Principal principal) {
+		
+		 
+		return "Hello  Admin!" ;
 	}
 
-	@RequestMapping(value = "/api/auth/getStudentDetails/{name}")
-	public Student getStudentDetails(@PathVariable(name = "name") String name) {
-		return new Student(name, "Pune", "MCA");
-	}
+	@GetMapping("/user")
+	public String userInfo(Authentication authentication) {
 
+//		String role = authentication.getAuthorities().stream()
+//				.findAny().get().getAuthority();
+
+		return "Your user name is: "  + " and your role is: " ;
+	}
+	@RequestMapping(value = "/guest")
+	public String getStudentDetail() {
+		
+//		long id=getUserPrinciple().getUserprofileinfoid();
+//		String email=getUserPrinciple().getEmail();
+		return "Hello Guest!";
+	}
+	
+	
+	
+	
+	@RequestMapping("/hj")   
+	 public String showResults(final HttpServletRequest request, Principal principal) {
+
+	     final String currentUser = principal.getName();
+              return currentUser;
+	 }
 	
 	public static void main(String[] args) {
 		SpringApplication.run(UserServiceApplication.class, args);
@@ -42,29 +67,5 @@ public class UserServiceApplication {
 
 }
 
-class Student {
-	String name;
-	String address;
-	String cls;
 
-	public Student(String name, String address, String cls) {
-		super();
-		this.name = name;
-		this.address = address;
-		this.cls = cls;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public String getCls() {
-		return cls;
-	}
-
-}
 
