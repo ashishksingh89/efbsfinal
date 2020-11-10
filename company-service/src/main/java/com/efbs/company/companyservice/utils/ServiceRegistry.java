@@ -1,10 +1,11 @@
 
-package com.efbs.service.users.utils;
+package com.efbs.company.companyservice.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.efbs.service.users.service.UserService;
+import com.efbs.company.companyservice.service.CompanyService;
+
 
 
 /**
@@ -16,17 +17,21 @@ import com.efbs.service.users.service.UserService;
 public class ServiceRegistry {
 
 
+
+
 	@Autowired
-	private UserService userService;
-
-
+	private CompanyService companyService;
 
 
 //	@Autowired
 //	private CommonServic commonService;
-//	
-	public UserService getUserService() {
-		return userService;
+////	
+//	public UserService getUserService() {
+//		return userService;
+//	}
+
+	public CompanyService getCompanyService() {
+		return companyService;
 	}
 
 	

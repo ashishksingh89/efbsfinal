@@ -25,6 +25,8 @@ public class ZuulLoggingFilter extends ZuulFilter {
 
 		HttpServletRequest httpServletRequest = RequestContext.getCurrentContext().getRequest();
 		System.err.println("Zull API GateWay is calling");
+		System.out.println("Get Header"+httpServletRequest.getHeader("Authorization"));
+		
 		lOGGER.info("request -> {} request uri -> {}", httpServletRequest, httpServletRequest.getRequestURI());
 		return null;
 	}

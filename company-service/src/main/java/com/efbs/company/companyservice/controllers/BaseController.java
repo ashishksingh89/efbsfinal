@@ -1,10 +1,11 @@
-package com.efbs.service.users.controllers;
+package com.efbs.company.companyservice.controllers;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import com.efbs.service.users.utils.ServiceRegistry;
+
+import com.efbs.company.companyservice.utils.ServiceRegistry;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -45,10 +46,8 @@ public class BaseController {
 		return objectMapper;
 	}
 	
-	
-	
-	protected String getMessage(final String key) {
 
+	protected String getMessage(final String key) {
 		System.err.println("KEY:" + key);
 		System.err.println("test:" + getMessageSource().getMessage(key, null, Locale.getDefault()));
 		return getMessageSource().getMessage(key, null, Locale.getDefault());

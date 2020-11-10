@@ -23,8 +23,8 @@ import com.efbs.apigateway.security.services.UserDetailsServiceImpl;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-		 securedEnabled = true,
-		 jsr250Enabled = true,
+//		 securedEnabled = true,
+//		 jsr250Enabled = true,
 		prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
@@ -60,8 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
-			.antMatchers("/backend/admin/**").hasRole("SYSTEM_ADMIN")
-			.antMatchers("/backend/user/**").hasRole("COMPANY_ADMIN")
+			.antMatchers("/company/api/addcompany/**").hasRole("SYSTEM_ADMIN")
+			.antMatchers("/company/api/getlistofcompanybysystemadmin/**").hasRole("SYSTEM_ADMIN")
+
+			.antMatchers("/employee/api/addemployee/**").hasAnyRole("COMPANY_ADMIN","COMPANY_HR","SYSTEM_ADMIN")
 			.anyRequest().authenticated();
 		http.addFilterAfter(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}

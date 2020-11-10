@@ -31,5 +31,28 @@ public class PreFilter extends ZuulFilter {
 
     return null;
   }
+  
+  
+  
+  
+  
+//  private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {​​​​​​​
+//      String token = request.getHeader(HEADER_STRING);
+//      if (token != null) {​​​​​​​
+//          // parse the token.
+//          String user;
+//          try {​​​​​​​
+//              user = Jwts.parser()
+//                      .setSigningKey(SECRET.getBytes())
+//                      .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+//                      .getBody()
+//                      .getSubject();
+//          }​​​​​​​ catch (SignatureException e) {​​​​​​​
+//              return null;
+//          }​​​​​​​
+  
+  
+  
+  
 
 }
