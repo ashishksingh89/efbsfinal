@@ -55,7 +55,6 @@ INSERT INTO `rolemaster` (`rolename`) VALUES ('ROLE_COMPANY_ADMIN');
 INSERT INTO `rolemaster` (`rolename`) VALUES ('ROLE_COMPANY_HR');
 INSERT INTO `rolemaster` (`rolename`) VALUES ('ROLE_EMPLOYEE');
 
-INSERT INTO `userprofileinfo` (`firstname`, `middlename`, `lastname`, `gender`, `position`, `contact`, `division`, `email`, `password`) VALUES ('ashish', 'kumar', 'singh', 'male', 'java devloper', '9543212111', 'IT', 'testsystemadmin@gmail.com', '$2a$10$1ZMAINkleqlJBxgIPOWfAucyz2D0LtGFbP8uBgiApQW1IH4LTWk66');
 
 
 

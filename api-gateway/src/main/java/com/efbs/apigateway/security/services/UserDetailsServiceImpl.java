@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		System.err.println(user);
 
-		List<Role> role=roleRepository.getRoleIdAndRoleName(user.getUserprofileinfoid(), user.getCompanyid());
+		List<Role> role=roleRepository.getRoleIdAndRoleName(user.getUserprofileinfoid());
 		user.setRoles(role);
 		return UserDetailsImpl.build(user);
 	}
