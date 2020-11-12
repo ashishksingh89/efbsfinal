@@ -216,6 +216,16 @@ public class User {
 		public void setStatus(Boolean status) {
 			this.status = status;
 		}
+
+		@Override
+		public String toString() {
+			return "User [userprofileinfoid=" + userprofileinfoid + ", firstname=" + firstname + ", middlename="
+					+ middlename + ", lastname=" + lastname + ", gender=" + gender + ", position=" + position
+					+ ", division=" + division + ", contact=" + contact + ", companyid=" + companyid + ", createdby="
+					+ createdby + ", createdatetime=" + createdatetime + ", auditeddatetime=" + auditeddatetime
+					+ ", auditedby=" + auditedby + ", password=" + password + ", email=" + email + ", role=" + role
+					+ ", status=" + status + "]";
+		}
 	    
 	    
 	    

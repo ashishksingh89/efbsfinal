@@ -88,7 +88,7 @@ public class UserController extends BaseController{
 	@PostMapping(ApplicationURIConstants.ADD_USER_BY_COMPANY_ADMIN_AND_COMPANY_HR)
 	public AppResponse<Long> registerUserOrEmployee(@Valid @RequestBody User userDetails,final BindingResult bindingResult) {
 
-
+System.err.println(userDetails.toString());
 		final AppResponse<Long> response = new AppResponse<>();
 		LOGGER.info(ApplicationConstants.METHOD_CALLED_LABEL);
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();

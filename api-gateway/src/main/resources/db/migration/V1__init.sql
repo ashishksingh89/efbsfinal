@@ -1,6 +1,5 @@
-
-CREATE TABLE IF NOT EXISTS `userprofileinfo` (
-  `userprofileinfoid` INT(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `userprofileinfo` (
+  `userprofileinfoid` int(4) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(50) NOT NULL,
   `middlename` varchar(50) DEFAULT NULL,
   `lastname` varchar(50) NOT NULL,
@@ -17,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `userprofileinfo` (
   `auditeddatetime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Date on which the record was updated ',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`userprofileinfoid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS `rolemaster` (
     `roleid` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'AUTO GENERATED KEY',
