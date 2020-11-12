@@ -1,0 +1,1 @@
+INSERT INTO `efbs`.`userprofileinfo` (`firstname`, `lastname`, `gender`, `position`, `contact`, `division`, `email`, `password`) VALUES ('snehal', 'shah', 'male', 'CEO', '6546234731', 'IT', 'testsaaystemadmin@gmail.com', '$2a$10$Qj7hnEfFUuCeTGOCdcQxwuw.SEQyAolp4x/byKfWgnD4Hheceu0kK');
