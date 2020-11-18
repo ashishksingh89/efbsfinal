@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a href="https://angular/io" class="navbar-brand" *ngIf="currentUser">
+    <!-- <img src="assets/imgs/angular.png" width="30" height="30" class="d-inline-block align-top"/> -->
+    Employee-Feed-Back
+  </a>
+  <div class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a href="/admin" class="nav-link" *ngIf="isAdmin">Admin Panel</a>
+    </li>
+  </div>
+
+  <div class="navbar-nav ml-auto" *ngIf="currentUser">
+    <li >
+      <a class="nav-link">
+        <span class="glyphicon "></span>Mr. {{currentUser.username}}
+       </a> 
+    </li>
+    <li >
+      <a (click)="logout()" class="nav-link">
+        <span class="glyphicon "></span> LogOut
+      </a>
+    </li>
+  </div>
+</nav>
+<router-outlet></router-outlet>
