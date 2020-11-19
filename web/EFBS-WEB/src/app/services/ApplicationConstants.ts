@@ -23,15 +23,11 @@ export class ApplicationConstants {
      static readonly MSG_BOX_LABEL = "#messageBox";
 
      // Error msg
-     static readonly INTERNAL_SEREVR_ERROR = "Internal server error.";
-     static readonly MAXIMUM_FILE_SIZE ="Maximum file size 10MB";
+    
 
      // Content type
      static readonly APPLICATION_JSON = "application/json";
 
-    // Custome Message
-    static readonly GROUP_CONFIGS_KEY = "group-configs";
-
-    static readonly SERVER_CONNECTION_PROBLEM ="Server connection refused";
+  
 
 }
