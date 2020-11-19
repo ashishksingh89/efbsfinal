@@ -27,48 +27,25 @@ export class UserService {
 
   
  
-  signIn( credentials: any): Observable<AppResponse> {
-    return this.http.post<AppResponse>(API_URL, credentials).pipe(
-          map(response => {
-            if(response) {
-              localStorage.setItem('currentUser', JSON.stringify(response.data));
-               this.currentUserSubject.next(response.data);
-            }
-            return response;
-          })
-        );
+  signIn(credentials: any): Observable<AppResponse> {
+    return this.http.post<AppResponse>(API_URL, credentials, );
   }
-
-  // login(user: User): Observable<any> {
-  //   const headers = new HttpHeaders(user ? {
-  //     authorization:'Basic ' + btoa(user.username + ':' + user.password)
-  //   }:{});
-
-  //   return this.http.get<any> (API_URL + "login", {headers:headers}).pipe(
-  //     map(response => {
-  //       if(response) {
-  //         localStorage.setItem('currentUser', JSON.stringify(response));
-  //         this.currentUserSubject.next(response);
-  //       }
-  //       return response;
-  //     })
-  //   );
-  // }
-
-  // logOut(): Observable<any> {
-  //   return this.http.post("http://localhost:8085/api/"+ "logout", {}).pipe(
-  //     map(response => {
-  //       localStorage.removeItem('currentUser');
-  //       localStorage.clear();
-  //       this.currentUserSubject.next(null);
-  //     })
-  //   );
-  // }
+    //.pipe(
+    //       map(response => {
+    //         if(response) {
+    //           // localStorage.setItem('currentUser', JSON.stringify(response.data));
+    //           //  this.currentUserSubject.next(response.data);
+    //         }
+    //         return response;
+    //       })
+    //     );
+  
 
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    localStorage.clear();
 }
 
   register(user: User): Observable<any> {

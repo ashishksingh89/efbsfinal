@@ -1,18 +1,18 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a href="https://angular/io" class="navbar-brand" *ngIf="currentUser">
+<nav class="navbar navbar-expand navbar-dark bg-dark"*ngIf="user">
+  <!-- <a href="https://angular/io" class="navbar-brand" *ngIf="currentUser"> -->
     <!-- <img src="assets/imgs/angular.png" width="30" height="30" class="d-inline-block align-top"/> -->
-    Employee-Feed-Back
-  </a>
+    <!-- Employee-Feed-Back -->
+  <!-- </a> -->
   <div class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a href="/admin" class="nav-link" *ngIf="isAdmin">Admin Panel</a>
+      <a href="/admin" class="nav-link" *ngIf="user">Employee-Feed-Back-System</a>
     </li>
   </div>
 
-  <div class="navbar-nav ml-auto" *ngIf="currentUser">
+  <div class="navbar-nav ml-auto" *ngIf="user">
     <li >
-      <a class="nav-link">
-        <span class="glyphicon "></span>Mr. {{currentUser.username}}
+      <a class="nav-link" >
+        <span class="glyphicon "></span>Mr. {{currentUser}}
        </a> 
     </li>
     <li >

@@ -3,39 +3,21 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import {UserService} from '../services/user.service';
 import {User} from '../models/user';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  currentUser: User;
-  constructor(private router: Router, private userService: UserService) {
-    this.userService.currentUser.subscribe(data => {
-      this.currentUser = data;
-    });
-  }
-  // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-  //   if(this.currentUser) {
-  //     if(route.data.roles && route.data.roles.indexOf(this.currentUser.role) === -1){
-  //       // this.router.navigate(['/401']);
-  //       return false;
-  //     }
-  //     return true;
-  //   }
-  //   this.router.navigate(['/login']);
-  //   return false;
-  // }
+ 
+  constructor(private router: Router, private token: TokenStorageService) { }
 
-
-  canActivate():boolean{
-    if (localStorage.getItem('currentUser')) {
-        // logged in so return true
-        return true;
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (this.token.getToken()) {
+      return true;
     }
-
-    // not logged in so redirect to login page
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
     return false;
-}
+  }
 }

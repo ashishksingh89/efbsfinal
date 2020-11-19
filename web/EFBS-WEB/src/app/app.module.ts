@@ -1,33 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { UnathorizedComponent } from './components/unathorized/unathorized.component';
-
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
+import { JwtModule } from '@auth0/angular-jwt';
+import { ProfileComponent } from './profile/profile.component';
 
+
+export function tokenGetter() {
+  return localStorage.getItem("currentUser");
+}
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProfileComponent,
-    NotFoundComponent,
-    UnathorizedComponent
+    ProfileComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,JwtModule.forRoot({
+      config: {
+       tokenGetter: tokenGetter,
+      // allowedDomains: ["localhost:4200", "foo.com", "bar.com"]
+      },
+    }),
   ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
