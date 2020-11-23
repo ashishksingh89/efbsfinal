@@ -1,25 +1,44 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark"*ngIf="user">
-  <!-- <a href="https://angular/io" class="navbar-brand" *ngIf="currentUser"> -->
-    <!-- <img src="assets/imgs/angular.png" width="30" height="30" class="d-inline-block align-top"/> -->
-    <!-- Employee-Feed-Back -->
-  <!-- </a> -->
-  <div class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <a href="/admin" class="nav-link" *ngIf="user">Employee-Feed-Back-System</a>
-    </li>
-  </div>
+<mat-toolbar color="primary" *ngIf="currentUser">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>Employee Feedback System</h1>
+    <span class="menu-spacer"></span>
+    <div>
+    
+    </div>
+  </mat-toolbar-row>
 
-  <div class="navbar-nav ml-auto" *ngIf="user">
-    <li >
-      <a class="nav-link" >
-        <span class="glyphicon "></span>Mr. {{currentUser}}
-       </a> 
-    </li>
-    <li >
-      <a (click)="logout()" class="nav-link">
-        <span class="glyphicon "></span> LogOut
-      </a>
-    </li>
-  </div>
-</nav>
-<router-outlet></router-outlet>
+  <!-- <mat-toolbar-row>
+      <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
+    </mat-toolbar-row> -->
+
+    
+</mat-toolbar>
+
+<mat-sidenav-container >
+  <mat-sidenav #sidenav>
+    <h1>Welcome Mr.{{currentUser}}</h1>
+
+    <mat-nav-list style="background-color: seagreen;">
+
+      <a mat-list-item [routerLink]="'/addcompany'"> Add Company </a>
+        <a mat-list-item [routerLink]="'/companylist'">Company List </a>
+        <a mat-list-item [routerLink]="'/addcompanyhr'"> Add Comapny HR/Admin </a>
+        <a mat-list-item [routerLink]="'/addemployee'"> Add Employee </a>
+        <a mat-list-item [routerLink]="'/employeelist'"> Employee List </a>
+
+      <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
+      <a mat-list-item (click)="logout()" href="" mat-list-item> Logout</a>
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

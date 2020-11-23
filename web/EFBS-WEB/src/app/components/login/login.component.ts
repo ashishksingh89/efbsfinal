@@ -76,9 +76,9 @@ export class LoginComponent implements OnInit {
                     console.log("len3:" + this.roles.length)
 
                       if (this.roles[0] == Role.ROLE_SYSTEM_ADMIN)
-                        this.router.navigate(['/profile']);
+                        this.router.navigate(['companylist']);
                       else if (this.roles[0] == Role.ROLE_COMPANY_ADMIN || Role.ROLE_COMPANY_HR)
-                        this.router.navigate(['companydashboard']);
+                        this.router.navigate(['companylist']);
                     
                       else if (this.roles[0] == Role.ROLE_EMPLOYEE)
                         this.router.navigate(['dashboardgu']);

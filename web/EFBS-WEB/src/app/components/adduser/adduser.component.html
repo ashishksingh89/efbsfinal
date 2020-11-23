@@ -1,0 +1,162 @@
+<body id="page-top">
+    <div id="wrapper">
+        <!-- <app-nav-other-user class="nav-background"></app-nav-other-user> -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+
+            <!-- Main Content -->
+            <div id="content">
+                <!-- <app-header></app-header> -->
+                <div class="container mb-4">
+                    <div class="card">
+                        <div class="card p-2">
+                            <div class="card-header">
+                                <div class="col-md-12 main-title">
+                                    <h3>Add Employee<p align="right" class="card-header-btn"> <a class="small"
+                                                routerLink="/employeelist" class="btn btn-primary"
+                                                appChangeCursor='pointer'> Employee List</a>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="container">
+                                    <form class="user" >
+                                        <div id="messageBox"></div>
+
+                                        <!-- <div class="row">
+                                            <div class="col-6 sm-pedding">
+                                                <div class="form-group">
+                                                    <label for="description">What needs attention?: <b
+                                                            class="text-danger">*</b></label>
+                                                    <textarea class="form-control" formControlName="description"
+                                                        rows="3" id="description" maxlength=1000
+                                                        [ngClass]="{ 'is-invalid': maintenance.description.errors && maintenance.description.invalid && (maintenance.description.dirty || maintenance.description.touched)}"
+                                                        name="description"
+                                                        placeholder="What needs attention"></textarea>
+                                                    <div class="ml-3"
+                                                        *ngIf="maintenance.description.errors && maintenance.description.invalid && (maintenance.description.dirty || maintenance.description.touched)">
+                                                        <small class="text-danger"
+                                                            *ngIf="maintenance.description.errors.required">Please
+                                                            Provide
+                                                            Description</small>
+                                                        <small class="text-danger"
+                                                            *ngIf="maintenance.description.errors.pattern">Please
+                                                            Provide Valid Description
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 sm-pedding">
+                                                <div class="form-group">
+                                                    <label for="moreInfo">More Information: </label>
+                                                    <textarea class="form-control" rows="3" formControlName="moreInfo"
+                                                        id="moreInfo" name="moreInfo" maxlength="200"
+                                                        placeholder="More Information"></textarea>
+                                                    <div class="ml-3"
+                                                        *ngIf="maintenance.moreInfo.errors && maintenance.moreInfo.invalid">
+                                                        <small class="text-danger"
+                                                            *ngIf="maintenance.moreInfo.errors.pattern">Please Provide
+                                                            Valid More Info
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-6 sm-pedding">
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="form-control" formControlName="urgent"
+                                                        class="custom-control-input" name="urgent" id="urgent">
+                                                    <label class="custom-control-label" for="urgent">Is this issue
+                                                        urgent?: <b class="text-danger">*</b></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 sm-pedding">
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="form-control"
+                                                        formControlName="safetyThreat" class="custom-control-input"
+                                                        name="safetyThreat" id="safetyThreat">
+                                                    <label class="custom-control-label" for="safetyThreat">Is this issue
+                                                        actively causing property
+                                                        damage or a threat to personal safety?: <b
+                                                            class="text-danger">*</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="row">
+                                           
+                                            <div class="col-6 sm-pedding">
+                                                <div class="form-group">
+                                                    <label for="externaluseroccupationId">Occupation: <b
+                                                            class="text-danger">*</b></label>
+                                                    <select *ngIf="resDataForCate" class="form-control"
+                                                        formControlName="externaluseroccupationId" id="externaluseroccupationId"
+                                                        [ngClass]="{ 'is-invalid': maintenance.externaluseroccupationId.errors && maintenance.externaluseroccupationId.invalid && (maintenance.externaluseroccupationId.dirty || maintenance.externaluseroccupationId.touched)}"
+                                                        (change)="getOccupation($event.target.value)">
+                                                        <option value=""> Select Occupation </option>
+                                                        <option *ngFor="let data of resDataForCate.data.occupations" [value]="data.categoryId">
+                                                            {{data.category}}</option>
+                                                    </select>
+                                                    <div class="ml-3"
+                                                        *ngIf=" maintenance.externaluseroccupationId.errors && maintenance.externaluseroccupationId.invalid && (maintenance.externaluseroccupationId.dirty || maintenance.externaluseroccupationId.touched)">
+                                                        <small class="text-danger"
+                                                            *ngIf="maintenance.externaluseroccupationId.errors.required">Please
+                                                            Provide
+                                                            Occupation</small>
+                                                    </div>
+                                                   
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-6 sm-pedding">
+                                                <div class="form-group">
+                                                    <label for="assignedTo">External User Name: <b
+                                                            class="text-danger">*</b></label>
+                                                    <select *ngIf="show" placeholder="External User Name" class="form-control"
+                                                        formControlName="assignedTo" id="assignedTo"
+                                                        [ngClass]="{ 'is-invalid': maintenance.assignedTo.errors && maintenance.assignedTo.invalid && (maintenance.assignedTo.dirty || maintenance.assignedTo.touched)}">
+                                                          <option value="">Select External User Name</option> 
+                                                            <option *ngFor="let data of externaluser.data" [value]="data.userProfileInfoId">
+                                                            {{data.fullName}}</option>
+                                                    </select>
+
+                                                    <input type="text" *ngIf="!show" class="form-control" id="assignedTo"
+                                                    formControlName="assignedTo" name="assignedTo"
+                                                    placeholder="External User Name" readonly>
+                                                    <div class="ml-3"
+                                                        *ngIf=" maintenance.assignedTo.errors && maintenance.assignedTo.invalid && (maintenance.assignedTo.dirty || maintenance.assignedTo.touched)">
+                                                        <small class="text-danger"
+                                                            *ngIf="maintenance.assignedTo.errors.required">Please
+                                                            Provide
+                                                            External User Name</small>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div> -->
+
+                                       
+
+                                     
+
+                                        <div class="row col-2 blue-btn">
+                                            <input type="submit" value="Submit"
+                                                class="btn btn-primary btn-user btn-block"
+                                                 />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <app-footer></app-footer> -->
+        </div>
+    </div>
+</body>
