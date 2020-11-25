@@ -10,7 +10,7 @@
               <div class="card p-2">
                 <div class="card-header">
                   <div class="col-md-12 main-title">
-                    <h3>Employee List<p align="right" class="card-header-btn"> <a class="small" routerLink="/addcompany"
+                    <h3>Company List<p align="right" class="card-header-btn"> <a class="small" routerLink="/addcompany"
                           class="btn btn-primary" appChangeCursor='pointer'>Add Company</a>
                       </p>
                     </h3>
@@ -21,26 +21,27 @@
                   <br />
                   <div class="col-md-12 fm-table" style="padding: 0;">
                     <div class="custom-card">
-                      <table id="mrListDataTable" class="table table-striped table-bordered example">
+                      <table *ngIf="resData" id="comListDataTable" class="table table-striped table-bordered example">
                         <thead>
                           <tr>
                             <th class="w-30">Company Name</th>
                             <th>Company Address</th>
                             <th>Company Website</th>
                             <th>Company Size</th>
+                            <th>CreatedBy</th>
                             <th>Created Date</th>
                             <th>Action</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <!-- <tr *ngFor="let data of resData.data">
-                            <td>{{data.description}}</td>
-                            <td>{{data.category}}</td>
-                            <td *ngIf="data.urgent == true">Yes</td>
-                            <td *ngIf="data.urgent == false">No</td>
-                            <td>{{data.status}}</td>
-                            <td>{{data.createDateTime | date: 'MM/dd/yyyy'}}</td>
-                            <td>
+                        <tbody >
+                          <tr *ngFor="let data of resData.data">
+                            <td>{{data.companyname}}</td>
+                            <td>{{data.companyaddress}}</td>
+                            <td>{{data.companywebsite}}</td>
+                            <td>{{data.companysize}}</td>
+                            <td>{{data.createdby}}</td>
+                            <td>{{data.createdatetime | date: 'MM/dd/yyyy'}}</td>
+                            <!-- <td>
                               <a [routerLink]="[ '/maintenanceRequest', data.maintenanceRequestId]" appChangeCursor='pointer' title='View Record'>
                                 <i class="far fa-file-alt"></i>
                               </a>
@@ -48,8 +49,8 @@
                               <a   [routerLink]="[ '/maintenanceRequest-edit', data.maintenanceRequestId]" appChangeCursor='pointer' title='Edit Record'>
                                 <i *ngIf="data.status == 'PENDING' " class="far fa-edit"></i>
                               </a>
-                            </td>
-                          </tr> -->
+                            </td> -->
+                          </tr> 
                         </tbody>
                       </table>
                     </div>

@@ -24,7 +24,7 @@ export class CompanydashboardComponent implements OnInit {
     let API_URL = "http://localhost:8085/company/api/getlistofcompanybysystemadmin";
     // tslint:disable-next-line: max-line-length
     console.log("inside")
-    this.userService.getCategories(API_URL).subscribe(res => {
+    this.userService.getEmployeeList(API_URL).subscribe(res => {
     // this.httpService.get(environment.BASE_URL + ApplicationURIConstant.MR_LIST + '?includeGroup=false').subscribe(res => {
       this.resData = new AppResponse(res);
       console.log("resdata:"+this.resData);

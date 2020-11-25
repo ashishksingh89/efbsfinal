@@ -8,6 +8,7 @@ import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin.service';
 @Component({
   selector: 'app-companylist',
   templateUrl: './companylist.component.html',
@@ -17,18 +18,19 @@ export class CompanylistComponent implements OnInit {
   dataTable: any;
   resData: AppResponse;
 
-  constructor(private userService: UserService, private router: Router, private tokenService: TokenStorageService, private fb: FormBuilder) {
+  constructor(private adminService: AdminService, private router: Router, private tokenService: TokenStorageService, private fb: FormBuilder) {
   }
   ngOnInit() {
+    
     let API_URL = "http://localhost:8085/company/api/getlistofcompanybysystemadmin";
     // tslint:disable-next-line: max-line-length
     console.log("inside")
-    this.userService.getCategories(API_URL).subscribe(res => {
+    this.adminService.findAllCompany(API_URL).subscribe(res => {
     // this.httpService.get(environment.BASE_URL + ApplicationURIConstant.MR_LIST + '?includeGroup=false').subscribe(res => {
       this.resData = new AppResponse(res);
-      console.log("resdata:"+this.resData);
+      console.log("resdata:"+JSON.stringify(this.resData));
       setTimeout(() => {
-        $('#mrListDataTable').DataTable({
+        $('#comListDataTable').DataTable({
           responsive: true,
           autoWidth: true,
           searching: true,

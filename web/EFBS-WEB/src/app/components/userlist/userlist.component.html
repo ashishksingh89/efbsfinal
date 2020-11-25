@@ -21,27 +21,28 @@
                   <br />
                   <div class="col-md-12 fm-table" style="padding: 0;">
                     <div class="custom-card">
-                      <table id="mrListDataTable" class="table table-striped table-bordered example">
+                      <table *ngIf="resData"  id="userListDataTable" class="table table-striped table-bordered example">
                         <thead>
                           <tr>
                             <th class="w-30">Employee Name</th>
                             <th>Email </th>
-                            <th>Phone Number</th>
+                            <!-- <th>Phone Number</th>
                             <th>Company Name</th>
-                            <th>Created By</th>
-                            <th>Created Date</th>
+                            <th>Created By</th> -->
+                            <!-- <th>Created Date</th> -->
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <!-- <tr *ngFor="let data of resData.data">
-                            <td>{{data.description}}</td>
-                            <td>{{data.category}}</td>
-                            <td *ngIf="data.urgent == true">Yes</td>
-                            <td *ngIf="data.urgent == false">No</td>
-                            <td>{{data.status}}</td>
-                            <td>{{data.createDateTime | date: 'MM/dd/yyyy'}}</td>
-                            <td>
+                           <tr *ngFor="let data of resData.data">
+                            <td>{{data.username}}</td>
+                            <td>{{data.email}}</td>
+                            <td></td>
+                            <!-- <td *ngIf="data.urgent == true">Yes</td>
+                            <td *ngIf="data.urgent == false">No</td> -->
+                            <!-- <td>{{data.status}}</td> -->
+                            <!-- <td>{{data.createdate | date: 'MM/dd/yyyy'}}</td> -->
+                            <!-- <td>
                               <a [routerLink]="[ '/maintenanceRequest', data.maintenanceRequestId]" appChangeCursor='pointer' title='View Record'>
                                 <i class="far fa-file-alt"></i>
                               </a>
@@ -50,7 +51,7 @@
                                 <i *ngIf="data.status == 'PENDING' " class="far fa-edit"></i>
                               </a>
                             </td>
-                          </tr> -->
+                          </tr>  -->
                         </tbody>
                       </table>
                     </div>

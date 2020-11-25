@@ -4,8 +4,10 @@ import { AdduserComponent } from './components/adduser/adduser.component';
 import { CompanydashboardComponent } from './components/companydashboard/companydashboard.component';
 import { CompanylistComponent } from './components/companylist/companylist.component';
 import {LoginComponent} from './components/login/login.component';
+import { MultiUserDashboardComponent } from './components/multi-user-dashboard/multi-user-dashboard.component';
 import { SystemadmindashboardComponent } from './components/systemadmindashboard/systemadmindashboard.component';
 import { UserlistComponent } from './components/userlist/userlist.component';
+import { AuthGuard } from './guards/auth.guard';
 
 import {Role} from './models/role';
 import { ProfileComponent } from './profile/profile.component';
@@ -18,10 +20,10 @@ const routes: Routes = [
   {path:'systemadmindashboard', component: SystemadmindashboardComponent},
   {path:'employeelist', component: UserlistComponent},
   {path:'addemployee', component: AdduserComponent},
-  {path:'companylist', component: CompanylistComponent},
+  {path:'companylist', component: CompanylistComponent,canActivate: [AuthGuard]},
+  {path:'dashboard', component: MultiUserDashboardComponent},
   {path:'profile', component: ProfileComponent},
-
-  { path: '**', component: LoginComponent },
+  { path: '**', component: LoginComponent ,canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -17,22 +17,20 @@ export class UserlistComponent implements OnInit {
 
   dataTable: any;
   resData: AppResponse;
+//     let API_URL = "http://localhost:8085/employee/api/getlistofemployeebycompanyhr";
 
   constructor(private userService: UserService, private router: Router, private tokenService: TokenStorageService, private fb: FormBuilder) {
   }
   ngOnInit() {
+       let API_URL = "http://localhost:8085/employee/api/getlistofemployeebycompanyhr";
 
-  }
-
-  ngAfterViewInit(): void {
-    let API_URL = "http://localhost:8085/api/auth/signin";
-    // tslint:disable-next-line: max-line-length
-    this.userService.getCategories(API_URL).subscribe(res => {
+    console.log("inside")
+    this.userService.getEmployeeList(API_URL).subscribe(res => {
     // this.httpService.get(environment.BASE_URL + ApplicationURIConstant.MR_LIST + '?includeGroup=false').subscribe(res => {
       this.resData = new AppResponse(res);
-      console.log("resdata:"+this.resData);
+      console.log("resdata:"+JSON.stringify(this.resData));
       setTimeout(() => {
-        $('#mrListDataTable').DataTable({
+        $('#userListDataTable').DataTable({
           responsive: true,
           autoWidth: true,
           searching: true,
@@ -61,6 +59,47 @@ export class UserlistComponent implements OnInit {
         this.router.navigate(['home']);
       }
     });
-  }
 
 }
+  }
+
+//   ngAfterViewInit(): void {
+//     let API_URL = "http://localhost:8085/employee/api/getlistofemployeebycompanyhr";
+//     console.log("inside")
+//     this.userService.getEmployeeList(API_URL).subscribe(res => {
+//     // this.httpService.get(environment.BASE_URL + ApplicationURIConstant.MR_LIST + '?includeGroup=false').subscribe(res => {
+//       this.resData = new AppResponse(res);
+//       console.log("resdata:"+JSON.stringify(this.resData));
+//       setTimeout(() => {
+//         $('#comListDataTable').DataTable({
+//           responsive: true,
+//           autoWidth: true,
+//           searching: true,
+//           /*"ordering": true,*/
+//           order: [],
+//           language: {
+//             zeroRecords: 'No records found.',
+//           },
+//           lengthMenu: [[5, 10, 15, 20, -1], [5, 10, 15, 20, 'All']],
+//           pageLength: 5,
+//           pagingType: $(window).width() < 768 ? "full" : "full_numbers",
+//           processing: true,
+//           columnDefs: [{
+//             targets: 5,
+//             orderable: false
+//           },
+//         ]
+//         });
+//       }, 200);
+//       if (this.resData.status === 401) {
+//         //401 token related issue
+//         this.tokenService.clearSession();
+//         this.router.navigate(['login']);
+//       } else if (this.resData.status === 403) {
+//         //403 URL not accessible
+//         this.router.navigate(['home']);
+//       }
+//     });
+
+// }
+

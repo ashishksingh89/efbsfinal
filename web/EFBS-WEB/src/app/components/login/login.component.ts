@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
                     if (appResponse.data) {
                         console.log("len1:" + this.roles.length)
 
-                      this.router.navigate(['/profile']);
+                      this.router.navigate(['/dashboard']);
                     //   window.location.reload();
                     } else {
                         console.log("len2:" + this.roles.length)

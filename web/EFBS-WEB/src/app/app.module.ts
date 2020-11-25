@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
@@ -21,18 +22,15 @@ import { CompanydashboardComponent } from './components/companydashboard/company
 import { JwtModule } from '@auth0/angular-jwt';
 import { ApplicationConstants } from './services/ApplicationConstants';
 import { UserService } from './services/user.service';
-import { APP_BASE_HREF } from '@angular/common';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { httpInterceptorProviders } from './guards/auth-interceptor';
+import { MultiUserDashboardComponent } from './components/multi-user-dashboard/multi-user-dashboard.component';
 
-
-
-// const providers = [
-//   UserService,
-//   // AuthGuard,
-//   // intercept,
-//   // {provide: APP_BASE_HREF, useValue: ApplicationConstants.CURRENT_USER}
-// ]
-
+const providers = [
+  AuthGuard,
+  UserService,
+  httpInterceptorProviders,
+]
 
 export function tokenGetter() {
   return  JSON.parse(localStorage.getItem(ApplicationConstants.CURRENT_USER))[0][ApplicationConstants.TOKEN_KEY]
@@ -47,7 +45,7 @@ export function tokenGetter() {
     CompanylistComponent,
     SystemadmindashboardComponent,
     CompanydashboardComponent,
-
+    MultiUserDashboardComponent,
   ],
   imports: [
 
@@ -71,13 +69,16 @@ export function tokenGetter() {
       }
     }),
     ],
-    providers: [
-     UserService
-
-  ],
-  
-  bootstrap: [AppComponent]
-  // bootstrap: [AppComponent],
-  // schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  providers: [providers,UserService],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule { 
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AppModule,
+      providers: providers
+    }
+
+  }
+}

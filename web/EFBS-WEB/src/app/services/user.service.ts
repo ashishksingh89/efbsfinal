@@ -41,30 +41,30 @@ export class UserService {
 
   //     // );
   // }
-  getCategories(apiURL : string): Observable<Company> {
+  // getCategories(apiURL : string): Observable<Company> {
 
   
-    const httpOptions = {
-         headers: new HttpHeaders({
-         'Content-Type': 'application/json',
-         'Access-Control-Allow-Origin' : '*',
-         'Access-Control-Allow-Methods' : 'GET, POST, PUT, DELETE'
-         })
-     };
+  //   const httpOptions = {
+  //        headers: new HttpHeaders({
+  //        'Content-Type': 'application/json',
+  //        'Access-Control-Allow-Origin' : '*',
+  //        'Access-Control-Allow-Methods' : 'GET, POST, PUT, DELETE'
+  //        })
+  //    };
  
-    return this.http.get<Company>(apiURL+'api', httpOptions );
-       //catchError(this.handleError)
+  //   return this.http.get<Company>(apiURL+'api', httpOptions );
+  //      //catchError(this.handleError)
      
-   }
+  //  }
 
-  // public getEmployeeList(uri: string): Observable<any> {
-  //   return this.http.get<any>(uri)
-  //     .pipe(
-  //       tap(_ => this.logger.info('Get request')),
-  //       catchError(this.applicationUtils.handelError<any>(`Error in processing get request`))
+  public getEmployeeList(uri: string): Observable<AppResponse> {
+    return this.http.get<AppResponse>(uri)
+      .pipe(
+        tap(_ => this.logger.info('Get request')),
+        catchError(this.applicationUtils.handelError<AppResponse>(`Error in processing get request`))
 
-  //     );
-  // }
+      );
+  }
 
   signIn(credentials: any): Observable<AppResponse> {
     return this.http.post<AppResponse>(API_URL, credentials, );
