@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Role } from 'src/app/models/role';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
@@ -14,10 +15,14 @@ export class MultiUserDashboardComponent implements OnInit {
   isValidCompanyHR : boolean;
   isValidCompanyADmin : boolean;
 
-  constructor(public tokenService: TokenStorageService) { }
+  constructor(public tokenService: TokenStorageService,private router:Router) { }
 
   ngOnInit() {
+    this.router.navigate([this.router.url])
 
+    setTimeout(() => {
+      window.location.reload();
+    }, 300000); // Activate after 5 minutes.
    console.log(this.tokenService.getRoles());
    this.roles = this.tokenService.getRoles();
 
@@ -32,4 +37,23 @@ export class MultiUserDashboardComponent implements OnInit {
    }
   }
 
+
+  public setCompanyAdminForLoggedinUser(){
+    this.router.navigate([this.router.url])
+
+    window.localStorage.setItem("isValidCompanyADmin", "true");
+    console.log("isValidCompanyADmin"+localStorage.getItem("isValidCompanyADmin"))
+  }
+
+  public setCompanyHRForLoggedinUser(){
+    window.localStorage.setItem("isValidCompanyHR", "true");
+    console.log("isValidCompanyHR"+localStorage.getItem("isValidCompanyHR"))
+
+  }
+
+  public setEmployeeForLoggedinUser(){
+    window.localStorage.setItem("isValidEmployee", "true");
+    console.log("isValidEmployee"+localStorage.getItem("isValidEmployee"))
+
+  }
 }

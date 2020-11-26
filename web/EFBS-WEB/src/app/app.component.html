@@ -23,12 +23,14 @@
 
     <mat-nav-list style="background-color: seagreen;">
 
-      <a mat-list-item [routerLink]="'/addcompany'"> Add Company </a>
-        <a mat-list-item [routerLink]="'/companylist'">Company List </a>
-        <a mat-list-item [routerLink]="'/addcompanyhr'"> Add Comapny HR/Admin </a>
-        <a mat-list-item [routerLink]="'/addemployee'"> Add Employee </a>
-        <a mat-list-item [routerLink]="'/employeelist'"> Employee List </a>
+        <a mat-list-item [routerLink]="'/addcompany'" *ngIf="isSystemAdminLoggedin"> Add Company </a>
+        <a mat-list-item [routerLink]="'/companylist'" *ngIf="isSystemAdminLoggedin"> List Of All Company </a>
+        <a mat-list-item [routerLink]="'/addemployee'" *ngIf="isSystemAdminLoggedin"> Add User </a>
 
+        <!-- <a mat-list-item [routerLink]="'/addcompanyhr'"> Add Comapny HR/Admin </a> -->
+        <a mat-list-item [routerLink]="'/addemployee'" *ngIf="isValidCompanyHR"> Add Employee </a>
+        <a mat-list-item [routerLink]="'/employeelist'"*ngIf="isValidCompanyADmin || isValidCompanyHR"> Employee List </a>
+    
       <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
       <a mat-list-item (click)="logout()" href="" mat-list-item> Logout</a>
 

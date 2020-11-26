@@ -134,7 +134,7 @@
                   <div class="col-md-12">
                     
                     <a [routerLink]="[ '/companylist']" appChangeCursor='pointer' title='Login as Company Admin'>
-                      <div class="element col-md-12" *ngIf="this.isValidCompanyADmin">
+                      <div class="element col-md-12" *ngIf="this.isValidCompanyADmin" (click)="setCompanyAdminForLoggedinUser()">
                         <i class="fas fa-crown fa-3x"></i>
                         <div class="title">
                           <h4>Company Admin</h4>
@@ -143,7 +143,7 @@
                     </a>
 
                     <a [routerLink]="[ '/employeelist']" appChangeCursor='pointer' title='Login as Company HR'>
-                      <div class="element col-md-12" *ngIf="this.isValidCompanyHR">
+                      <div class="element col-md-12" *ngIf="this.isValidCompanyHR" (click)="setCompanyHRForLoggedinUser()">
                         <i class="fas fa-user-tie fa-3x"></i>
                         <div class="title">
                           <h4>Company HR</h4>
@@ -152,7 +152,7 @@
                     </a>
 
                     <a [routerLink]="[ '/profile']" appChangeCursor='pointer' title='Login as Employee'>
-                      <div class="element col-md-12" *ngIf="this.isValidEmployee">
+                      <div class="element col-md-12" *ngIf="this.isValidEmployee" (click)="setEmployeeForLoggedinUser()">
                         <i class="fa fa-home fa-3x" aria-hidden="true"></i>
                         <div class="title">
                           <h4>Employee</h4>

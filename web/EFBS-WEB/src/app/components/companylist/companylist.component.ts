@@ -17,11 +17,19 @@ import { AdminService } from 'src/app/services/admin.service';
 export class CompanylistComponent implements OnInit {
   dataTable: any;
   resData: AppResponse;
-
+  roles:any[];
   constructor(private adminService: AdminService, private router: Router, private tokenService: TokenStorageService, private fb: FormBuilder) {
   }
+  isSystemAdminLoggedin : boolean;
+
   ngOnInit() {
-    
+
+    if(this.tokenService.getRoles()){
+      this.roles=this.tokenService.getRoles();
+      
+    }
+    this.isSystemAdminLoggedin = true;
+    window.localStorage.setItem("isSystemAdminLoggedin", "true");
     let API_URL = "http://localhost:8085/company/api/getlistofcompanybysystemadmin";
     // tslint:disable-next-line: max-line-length
     console.log("inside")
