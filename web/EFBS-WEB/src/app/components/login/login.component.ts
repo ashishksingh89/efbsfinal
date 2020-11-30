@@ -32,6 +32,9 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+      location.reload();
+
+      window.stop();
         this.loginForm = this.formBuilder.group({
             email: ['', Validators.required],
             password: ['', Validators.required]
@@ -76,9 +79,9 @@ export class LoginComponent implements OnInit {
                     console.log("len3:" + this.roles.length)
 
                       if (this.roles[0] == Role.ROLE_SYSTEM_ADMIN)
-                        this.router.navigate(['companylist']);
+                        this.router.navigate(['systemadmindashboard']);
                       else if (this.roles[0] == Role.ROLE_COMPANY_ADMIN || Role.ROLE_COMPANY_HR)
-                        this.router.navigate(['companylist']);
+                        this.router.navigate(['systemadmindashboard']);
                     
                       else if (this.roles[0] == Role.ROLE_EMPLOYEE)
                         this.router.navigate(['dashboardgu']);

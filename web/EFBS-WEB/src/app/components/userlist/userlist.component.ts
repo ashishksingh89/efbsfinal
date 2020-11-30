@@ -17,11 +17,22 @@ export class UserlistComponent implements OnInit {
 
   dataTable: any;
   resData: AppResponse;
+  isCompanyAdminLoggedin : boolean;
+  isCompanyHRLoggedin : boolean;
+
 //     let API_URL = "http://localhost:8085/employee/api/getlistofemployeebycompanyhr";
 
   constructor(private userService: UserService, private router: Router, private tokenService: TokenStorageService, private fb: FormBuilder) {
   }
   ngOnInit() {
+    location.reload();
+    this.isCompanyAdminLoggedin= true;
+    this.isCompanyHRLoggedin=true;
+    window.localStorage.setItem("isCompanyAdminLoggedin", "true");
+    window.localStorage.setItem("isCompanyHRLoggedin", "true");
+
+    // this.isEmployeeLoggedin= localStorage.getItem("isEmployeeLoggedin");
+
        let API_URL = "http://localhost:8085/employee/api/getlistofemployeebycompanyhr";
 
     console.log("inside")
@@ -29,6 +40,7 @@ export class UserlistComponent implements OnInit {
     // this.httpService.get(environment.BASE_URL + ApplicationURIConstant.MR_LIST + '?includeGroup=false').subscribe(res => {
       this.resData = new AppResponse(res);
       console.log("resdata:"+JSON.stringify(this.resData));
+            
       setTimeout(() => {
         $('#userListDataTable').DataTable({
           responsive: true,
@@ -50,6 +62,9 @@ export class UserlistComponent implements OnInit {
         ]
         });
       }, 200);
+      
+      window.stop()
+
       if (this.resData.status === 401) {
         //401 token related issue
         this.tokenService.clearSession();

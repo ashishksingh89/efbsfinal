@@ -1,0 +1,64 @@
+<mat-sidenav-container class="sidenav-container" >
+    <mat-sidenav 
+      #drawer
+      class="sidenav"
+      fixedInViewport="true"
+      [ngClass]="{ hidden: !(isHandset$ | async) }"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)"
+     >
+      <mat-toolbar>Welcome Mr.{{currentUser}}</mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item href="/addcompany" *ngIf="isSystemAdminLoggedin">Add Company</a>
+        <a mat-list-item href="/companylist" *ngIf="isSystemAdminLoggedin">Company List</a>
+        <a mat-list-item href="/addemployee" *ngIf="isSystemAdminLoggedin">Add User</a>
+        <a mat-list-item href="/addemployee" *ngIf="isValidCompanyHR">Add Employee</a>
+        <a mat-list-item href="/addemployee" *ngIf="isValidCompanyAdmin || isValidCompanyHR">Employee List</a>
+        <a mat-list-item (click)="logout()" href="" mat-list-item>Logout</a>
+
+        <!-- <a mat-list-item href="/addemployee"*ngIf="isSystemAdminLoggedin">Add User</a> -->
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        
+        <!-- <span>angular-material-nav</span> -->
+  
+        <mat-toolbar-row>
+          <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async"
+        >
+        <mat-icon aria-label="Side nav toggle icon" *ngIf="currentUser">menu</mat-icon>
+          </button>
+          <h1 *ngIf="currentUser">Employee Feed Back System</h1>
+          <span class="menu-spacer"></span>
+          <div [ngClass]="{ hidden: (isHandset$ | async) }" *ngIf="currentUser">
+            <a mat-button [routerLink]="'/addcompany'" *ngIf="isSystemAdminLoggedin"> Add Company </a>
+            <a mat-button [routerLink]="'/companylist'" *ngIf="isSystemAdminLoggedin"> List Of All Company </a>
+            <a mat-button [routerLink]="'/addemployee'" *ngIf="isSystemAdminLoggedin"> Add User </a>
+    
+            <!-- <a mat-list-item [routerLink]="'/addcompanyhr'"> Add Comapny HR/Admin </a> -->
+            <a mat-button [routerLink]="'/addemployee'" *ngIf="isValidCompanyHR"> Add Employee </a>
+            <a mat-button [routerLink]="'/employeelist'" *ngIf="isValidCompanyADmin"> Employee List </a>
+            <a  style="margin-left: 150%;">Welcome Mr.{{currentUser}}</a> 
+            <a mat-button (click)="logout()" > Logout </a>
+          </div>
+         
+        </mat-toolbar-row>
+  
+  
+        
+        <!-- <span>social</span> -->
+      </mat-toolbar>
+      <!-- Add Content Here -->
+  
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

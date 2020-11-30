@@ -25,6 +25,9 @@ import { UserService } from './services/user.service';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { httpInterceptorProviders } from './guards/auth-interceptor';
 import { MultiUserDashboardComponent } from './components/multi-user-dashboard/multi-user-dashboard.component';
+import { HeaderComponent } from './shared/pages/header/header.component';
+import { LayoutModule } from '@angular/cdk/layout';
+
 
 const providers = [
   AuthGuard,
@@ -46,6 +49,8 @@ export function tokenGetter() {
     SystemadmindashboardComponent,
     CompanydashboardComponent,
     MultiUserDashboardComponent,
+    HeaderComponent,
+
   ],
   imports: [
 
@@ -58,7 +63,15 @@ export function tokenGetter() {
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
     ReactiveFormsModule,
     LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR }),
     JwtModule.forRoot({

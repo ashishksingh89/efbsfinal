@@ -23,7 +23,7 @@ export class CompanylistComponent implements OnInit {
   isSystemAdminLoggedin : boolean;
 
   ngOnInit() {
-
+    // location.reload();
     if(this.tokenService.getRoles()){
       this.roles=this.tokenService.getRoles();
       
@@ -58,6 +58,7 @@ export class CompanylistComponent implements OnInit {
         ]
         });
       }, 200);
+      // window.stop();
       if (this.resData.status === 401) {
         //401 token related issue
         this.tokenService.clearSession();

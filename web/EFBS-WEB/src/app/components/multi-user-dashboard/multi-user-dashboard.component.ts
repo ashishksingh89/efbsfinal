@@ -18,7 +18,7 @@ export class MultiUserDashboardComponent implements OnInit {
   constructor(public tokenService: TokenStorageService,private router:Router) { }
 
   ngOnInit() {
-    this.router.navigate([this.router.url])
+    // this.router.navigate([this.router.url])
 
     setTimeout(() => {
       window.location.reload();
@@ -39,7 +39,6 @@ export class MultiUserDashboardComponent implements OnInit {
 
 
   public setCompanyAdminForLoggedinUser(){
-    this.router.navigate([this.router.url])
 
     window.localStorage.setItem("isValidCompanyADmin", "true");
     console.log("isValidCompanyADmin"+localStorage.getItem("isValidCompanyADmin"))
