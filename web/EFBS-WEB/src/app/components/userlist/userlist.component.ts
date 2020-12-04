@@ -25,7 +25,8 @@ export class UserlistComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private tokenService: TokenStorageService, private fb: FormBuilder) {
   }
   ngOnInit() {
-    location.reload();
+    // location.reload();
+
     this.isCompanyAdminLoggedin= true;
     this.isCompanyHRLoggedin=true;
     window.localStorage.setItem("isCompanyAdminLoggedin", "true");
@@ -63,7 +64,7 @@ export class UserlistComponent implements OnInit {
         });
       }, 200);
       
-      window.stop()
+     
 
       if (this.resData.status === 401) {
         //401 token related issue

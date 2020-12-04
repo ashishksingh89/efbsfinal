@@ -45,14 +45,14 @@
     
             <!-- <a mat-list-item [routerLink]="'/addcompanyhr'"> Add Comapny HR/Admin </a> -->
             <a mat-button [routerLink]="'/addemployee'" *ngIf="isValidCompanyHR"> Add Employee </a>
-            <a mat-button [routerLink]="'/employeelist'" *ngIf="isValidCompanyADmin"> Employee List </a>
+            <a mat-button [routerLink]="'/employeelist'" *ngIf="isValidCompanyAdmin"> Employee List </a>
             <a  style="margin-left: 150%;">Welcome Mr.{{currentUser}}</a> 
             <a mat-button (click)="logout()" > Logout </a>
           </div>
          
         </mat-toolbar-row>
   
-  
+        
         
         <!-- <span>social</span> -->
       </mat-toolbar>

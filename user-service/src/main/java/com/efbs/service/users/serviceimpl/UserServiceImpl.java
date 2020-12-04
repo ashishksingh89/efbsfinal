@@ -2,14 +2,18 @@
 package com.efbs.service.users.serviceimpl;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.efbs.service.users.dto.UserDTO;
 import com.efbs.service.users.models.AppResponse;
 import com.efbs.service.users.models.User;
+import com.efbs.service.users.repository.UserRepository;
 import com.efbs.service.users.service.UserService;
+import com.efbs.service.users.utils.ApplicationConstants;
 
 
 
@@ -23,7 +27,8 @@ public class UserServiceImpl implements UserService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 	
-	
+	@Autowired
+	UserRepository userRepository;
 
 	@Override
 	public User findByEmail(String email) {
@@ -59,6 +64,17 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-	
+
+
+
+
+	@Override
+	public List<UserDTO> findAllEmployee() {
+		LOGGER.info(ApplicationConstants.METHOD_ENTER_LABEL);
+		//
+		
+				List<UserDTO> list= userRepository.findAllEmployee();
+				return list;
+	}
 
 }

@@ -17,13 +17,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.efbs.service.users.dto.UserDTO;
 import com.efbs.service.users.jwtutils.JwtUtils;
 import com.efbs.service.users.models.AppResponse;
 import com.efbs.service.users.models.ERole;
@@ -34,7 +37,6 @@ import com.efbs.service.users.payload.response.MessageResponse;
 import com.efbs.service.users.repository.RoleRepository;
 import com.efbs.service.users.repository.UserRepository;
 import com.efbs.service.users.repository.UserRolesRepository;
-import com.efbs.service.users.utils.ApplicationAuthorityConstants;
 import com.efbs.service.users.utils.ApplicationConstants;
 import com.efbs.service.users.utils.ApplicationURIConstants;
 import com.efbs.service.users.validators.AddUserValidator;
@@ -200,4 +202,36 @@ System.err.println(userDetails.toString());
 		return response;
 
 	}
+	
+	
+	@GetMapping(value = ApplicationURIConstants.LIST_OF_EMPLOYEE)
+	@ResponseBody
+	public AppResponse<Object> getEmployeeList() {
+		LOGGER.info(ApplicationConstants.METHOD_ENTER_LABEL);
+		final AppResponse<Object> response = new AppResponse<>();
+		try {
+
+			final List<UserDTO> riList = getServiceRegistry().getUserService().findAllEmployee();
+
+			System.out.println(riList.toString());
+
+			//			if (riList !=null) {
+			//				response.setMessage(getMessage("record.found.suceess"));
+			//			} else {
+			//				response.setMessage(getMessage("record.not.found"));
+			//			}
+			response.setData(riList);
+			response.setStatus(HttpStatus.OK.value());
+
+		} catch (final Exception exception) {
+			response.setStatus(HttpStatus.BAD_REQUEST.value());
+			response.setMessage(ApplicationConstants.ERROR_LABEL);
+			LOGGER.info(ApplicationConstants.METHOD_EXCEPTION_LABEL + exception);
+		}
+		LOGGER.info(ApplicationConstants.METHOD_EXIT_LABEL);
+		return response;
+	}
+	
+	
+	
 }

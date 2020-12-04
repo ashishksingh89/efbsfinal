@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(	name = com.efbs.apigateway.utils.ApplicationTableConstants.USER_PROFILE_INFO)
 public class User {
-	  @Id
+	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = ApplicationTableConstants.USER_PROFILE_INFO_ID)
 	    private Long userprofileinfoid;

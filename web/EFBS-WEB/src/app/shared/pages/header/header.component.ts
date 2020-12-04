@@ -24,9 +24,8 @@ export class HeaderComponent implements OnInit {
   isSystemAdminLoggedin:Boolean;
   isValidEmployee : boolean;
   isValidCompanyHR : boolean;
-  isValidCompanyADmin : boolean;
+  isValidCompanyAdmin : boolean;
   roles:any[] = [];
-
 
   constructor(private breakpointObserver: BreakpointObserver,private http:HttpClient,private userService: UserService, private router: Router,private tokenService:TokenStorageService){
      
@@ -39,13 +38,12 @@ export class HeaderComponent implements OnInit {
       this.roles=this.tokenService.getRoles();
       if (this.roles.length > 1) {
           if(localStorage.getItem("isValidCompanyADmin"))
-          this.isValidCompanyADmin = true;
+          this.isValidCompanyAdmin = true;
           else if (localStorage.getItem("isValidCompanyHR"))
           this.isValidCompanyHR = true;
          else
          this.isValidEmployee = true;  
-         
-        
+   
 
       }
       else{
@@ -54,22 +52,18 @@ export class HeaderComponent implements OnInit {
           if (this.roles[0] == Role.ROLE_SYSTEM_ADMIN)
           this.isSystemAdminLoggedin = true;
            else if (this.roles[0] == Role.ROLE_COMPANY_ADMIN)
-           this.isValidCompanyADmin = true;
+           this.isValidCompanyAdmin = true;
           else if (this.roles[0] == Role.ROLE_COMPANY_HR)
           this.isValidCompanyHR = true;
           else
           this.isValidEmployee = true;  
           
           console.log("isSystemAdminLoggedin"+ this.isSystemAdminLoggedin);
-          console.log("isValidCompanyADmin"+ this.isValidCompanyADmin);
+          console.log("isValidCompanyADmin"+ this.isValidCompanyAdmin);
           console.log("isValidCompanyHR"+ this.isValidCompanyHR);
           console.log("isValidEmployee"+ this.isValidEmployee);
       }
       }       
-
-
-
-  
 
   this.user=true;
   this.currentUser=this.tokenService.getuserName()
@@ -78,22 +72,14 @@ export class HeaderComponent implements OnInit {
   //  this.role=this.tokenService.getRoles();
   }
 
- 
-
-  // public connectServer() {
-  //   this.http.get('url')
-  //     .subscribe(
-  //       data => console.log(data),
-  //       err => console.log(err)
-  //     );
-  // }
   public logout(){
     this.userService.logout();
     this.user=false;
     this.router.navigate(['/login']);
   }
 
-  // get isAdmin(){
-  //   return JSON.parse(localStorage.getItem(ApplicationConstants.CURRENT_USER))[0][ApplicationConstants.ROLES];;
-  // }
+  ngAfterViewInit(): void {
+    // tslint:disable-next-line: max-line-length
+   
+  }
 }

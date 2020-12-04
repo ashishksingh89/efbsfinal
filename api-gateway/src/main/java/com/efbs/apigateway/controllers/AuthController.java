@@ -17,7 +17,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +29,11 @@ import com.efbs.apigateway.repository.UserRepository;
 import com.efbs.apigateway.security.jwt.JwtUtils;
 import com.efbs.apigateway.security.services.UserDetailsImpl;
 import com.efbs.apigateway.utils.ApplicationConstants;
-import com.efbs.apigateway.validators.LoginRequestValidator;
 import com.efbs.apigateway.utils.ApplicationURIConstants;
+import com.efbs.apigateway.validators.LoginRequestValidator;
 
 
-
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin
 @RestController
 @RequestMapping(ApplicationURIConstants.BASE_API)
 public class AuthController extends BaseController {
@@ -59,7 +57,9 @@ public class AuthController extends BaseController {
 	@PostMapping(ApplicationURIConstants.USER_AUTHENTICATION)
 	public AppResponse<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest,final BindingResult bindingResult) {
 
-		System.err.println(loginRequest.toString());
+		System.err.println(loginRequest.getEmail());
+		System.err.println(loginRequest.getPassword());
+
 
 		LOGGER.info(ApplicationConstants.METHOD_CALLED_LABEL);
 		final Set<String> errorSet = new HashSet<>();
@@ -115,5 +115,18 @@ public class AuthController extends BaseController {
 
 
 	}
+	
+	
+//	@GetMapping("/logout")
+//    public ResponseEntity<?> login(Principal principal){
+//        if(principal == null){
+//            //This should be ok http status because this will be used for logout path.
+//            return ResponseEntity.ok(principal);
+//        }
+////        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
+////        User user = userService.findByUsername(authenticationToken.getName());
+////        user.setToken(jwtTokenProvider.generateToken(authenticationToken));
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
 
 }

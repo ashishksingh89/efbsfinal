@@ -22,7 +22,7 @@ export class AdduserComponent implements OnInit {
   submitted = false;
   public show=false;
 
-  private employeeUrl = "///";
+  // private employeeUrl = "///";
 
   constructor(private tokenService: TokenStorageService,private adminService:AdminService,private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -49,7 +49,7 @@ export class AdduserComponent implements OnInit {
     this.emolyeeForm = this.formBuilder.group({
       'firstname': ['', [Validators.required, Validators.pattern(AppRegExConstants.ALPHABETS_WITH_SPACE)]],
       'middlename': [''],
-      'lastname': ['',[Validators.pattern(AppRegExConstants.ALPHABETS)]],
+      'lastname': ['', [Validators.required, Validators.pattern(AppRegExConstants.ALPHABETS_WITH_SPACE)]],
       'contact': ['',[Validators.pattern(AppRegExConstants.TEN_DIGIT_CONTACT_NUMBER)]],
       'companyid': ['', Validators.required],
       'email': ['', [Validators.required,Validators.pattern(AppRegExConstants.EMAIL)]],

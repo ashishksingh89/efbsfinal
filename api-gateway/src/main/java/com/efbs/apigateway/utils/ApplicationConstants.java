@@ -53,7 +53,8 @@ public final class ApplicationConstants {
 	public static final String MM_DD_YYYY = "MM-DD-YYYY";
 	public static final String NO_RECORD_FOUND = "No record found for the given data";
 
-	public static final String ID = "id";
+	public static final String ID = "email";
+	public static final String PASS = "password";
 
 	// Common Http error messages - Start
 	public static final String HTTP_ERROR_MESSAGE_200 = "Resource retrieved successfully";

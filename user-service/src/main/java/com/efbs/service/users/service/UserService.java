@@ -1,7 +1,9 @@
 package com.efbs.service.users.service;
 
 import java.io.IOException;
+import java.util.List;
 
+import com.efbs.service.users.dto.UserDTO;
 import com.efbs.service.users.models.AppResponse;
 import com.efbs.service.users.models.User;
 
@@ -69,5 +71,10 @@ public interface UserService <User, Long> {
 	 */
 	public boolean isValidUser(final String email);
 
-	
+	/**
+	 *
+	 * @author Ashish Kumar Singh
+	 */
+
+	public List<UserDTO> findAllEmployee();
 }

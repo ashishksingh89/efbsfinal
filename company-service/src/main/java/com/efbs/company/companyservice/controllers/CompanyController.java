@@ -82,7 +82,7 @@ public class CompanyController extends BaseController {
 
 	@GetMapping(value = ApplicationURIConstants.LIST_OF_COMPANY)
 	@ResponseBody
-	public AppResponse<Object> getEventListByARCAndBM() {
+	public AppResponse<Object> getCompanyList() {
 		LOGGER.info(ApplicationConstants.METHOD_ENTER_LABEL);
 		final AppResponse<Object> response = new AppResponse<>();
 		try {
